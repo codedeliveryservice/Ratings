@@ -1,5 +1,7 @@
 # Ratings
 
+[![Build](https://github.com/codedeliveryservice/Ratings/actions/workflows/dotnet.yml/badge.svg)](https://github.com/codedeliveryservice/Ratings/actions/workflows/dotnet.yml)
+
 Programming technology course project of building a website based on ASP.NET Core with basic CRUD operations using Entity Framework Core.
 
 The idea is to create a simple system for managing the rating list of players.
@@ -68,3 +70,7 @@ public async Task<PlayerViewModel> GetPlayer(int id)
 ### Create Page
 
 ![Create Page](https://user-images.githubusercontent.com/93079612/170556512-1a5805b7-e309-449c-b227-1f2498709c0e.png)
+
+## License
+
+This project is licensed with the [MIT license](LICENSE).
