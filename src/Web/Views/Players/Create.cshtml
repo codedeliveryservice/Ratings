@@ -1,0 +1,71 @@
+﻿@model PlayerViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="create row g-0 card flex-md-row">
+    <form class="col-lg-9 d-flex flex-column" asp-action="Create" enctype="multipart/form-data">
+        <div class="card-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" value="0" />
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label asp-for="Name" class="control-label mb-1"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="Country" class="control-label mb-1"></label>
+                    <input asp-for="Country" class="form-control" />
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="FormFile" class="control-label mb-1"></label>
+                    <input id="imageInput" asp-for="FormFile" type="file" class="form-control" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label asp-for="Biography" class="control-label mb-1"></label>
+                    <textarea asp-for="Biography" rows="3" class="form-control"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label asp-for="ClassicalRating" class="control-label mb-1"></label>
+                    <input asp-for="ClassicalRating" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="RapidRating" class="control-label mb-1"></label>
+                    <input asp-for="RapidRating" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="BlitzRating" class="control-label mb-1"></label>
+                    <input asp-for="BlitzRating" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <input type="submit" value="Create" class="btn btn-sm btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary btn-sm">Cancel</a>
+        </div>
+    </form>
+
+    <div class="col-lg-3">
+        <div id="imageContainer" class="img bg-secondary rounded-end d-flex justify-content-center align-items-center text-white rounded-end">
+            No Image
+        </div>
+    </div>
+</div>
+
+<script src="~/js/editor.js"></script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

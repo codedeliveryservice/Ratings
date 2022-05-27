@@ -1,0 +1,91 @@
+﻿/* Layout */
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+a {
+    color: #0077cc;
+}
+
+.btn-primary {
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+.dropdown-menu {
+    width: 100%;
+}
+
+/* Common */
+.img {
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+/* Details Page */
+.details .img {
+    min-height: 300px;
+}
+
+.details .btn {
+    width: 125px;
+}
+
+.details .navigation {
+    display: flex;
+}
+
+    .details .navigation * {
+        width: 120px;
+        margin-right: 10px;
+    }
+
+    .details .navigation > *:last-child {
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+/* Edit Page */
+.edit .btn {
+    width: 125px;
+    margin-right: 6px;
+}
+
+/* Create Page */
+.create .btn {
+    width: 125px;
+}

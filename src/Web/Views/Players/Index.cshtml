@@ -1,0 +1,63 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Players";
+}
+
+<div class="card">
+    <table class="cart-body w-auto mx-3 table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>
+                    <sort-header ascending="@ViewBag.Ascending" current="@Model.SortViewModel.CurrentState" property="Name">
+                        @Html.DisplayNameFor(model => model.Players.First().Name)
+                    </sort-header>
+                </th>
+                <th>
+                    <sort-header ascending="@ViewBag.Ascending" current="@Model.SortViewModel.CurrentState" property="Country">
+                        @Html.DisplayNameFor(model => model.Players.First().Country)
+                    </sort-header>
+                </th>
+                <th>
+                    <sort-header ascending="@ViewBag.Ascending" current="@Model.SortViewModel.CurrentState" property="Classical">
+                        @Html.DisplayNameFor(model => model.Players.First().ClassicalRating)
+                    </sort-header>
+                </th>
+                <th>
+                    <sort-header ascending="@ViewBag.Ascending" current="@Model.SortViewModel.CurrentState" property="Rapid">
+                        @Html.DisplayNameFor(model => model.Players.First().RapidRating)
+                    </sort-header>
+                </th>
+                <th>
+                    <sort-header ascending="@ViewBag.Ascending" current="@Model.SortViewModel.CurrentState" property="Blitz">
+                        @Html.DisplayNameFor(model => model.Players.First().BlitzRating)
+                    </sort-header>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                int index = 1;
+                foreach (var player in Model.Players)
+                {
+                    <tr>
+                        <th>@(index++)</th>
+                        <td><a asp-action="Details" asp-route-id=@player.Id>@player.Name</a></td>
+                        <td>@Html.DisplayFor(model => @player.Country)</td>
+                        <td>@Html.DisplayFor(model => @player.ClassicalRating)</td>
+                        <td>@Html.DisplayFor(model => @player.RapidRating)</td>
+                        <td>@Html.DisplayFor(model => @player.BlitzRating)</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    @if (Context.User.IsInRole(Constants.Administrator))
+    {
+        <div class="card-footer d-flex justify-content-end">
+            <a class="btn btn-sm btn-primary px-lg-4" asp-action="Create">Create New</a>
+        </div>
+    }
+</div>

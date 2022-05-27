@@ -1,0 +1,53 @@
+﻿@model PlayerViewModel
+@{
+    ViewData["Title"] = @Model.Name;
+}
+
+<div class="details row g-0 card flex-md-row">
+    <div class="col-lg-9 d-flex flex-column">
+        <div class="card-body">
+            <h4 class="card-title">@Model.Name – @Model.Country</h4>
+            <p class="card-text">@Model.Biography</p>
+
+            <h5>Ratings</h5>
+            <table class="table table-bordered">
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.ClassicalRating)</td>
+                    <td>@Model.ClassicalRating</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.RapidRating)</td>
+                    <td>@Model.RapidRating</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.BlitzRating)</td>
+                    <td>@Model.BlitzRating</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card-footer navigation">
+            @if (Context.User.IsInRole(Constants.Administrator))
+            {
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary btn-sm">Edit</a>
+                <form class="d-inline" method="post" asp-action="Delete" asp-route-id="@Model.Id">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')">
+                        Delete
+                    </button>
+                </form>
+            }
+            <a asp-action="Index" class="btn btn-primary btn-sm">Back to List</a>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        @if (Model.ImageUrl is null)
+        {
+            <div class="h-100 bg-secondary rounded-end d-flex justify-content-center align-items-center text-white">No Image</div>
+        }
+        else
+        {
+            <div class="img rounded-end" style="background-image: url('@Model.ImageUrl');"></div>
+        }
+    </div>
+</div>
