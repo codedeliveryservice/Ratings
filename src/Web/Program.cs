@@ -5,7 +5,7 @@ using Web.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext();
+builder.Services.AddDbContext(builder.Configuration);
 builder.Services.AddIdentity();
 builder.Services.AddWebServices();
 

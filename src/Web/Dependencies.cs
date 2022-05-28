@@ -17,9 +17,18 @@ public static class Dependencies
         services.AddTransient<IImageStorageService, ImageStorageService>();
     }
 
-    public static void AddDbContext(this IServiceCollection services)
+    public static void AddDbContext(this IServiceCollection services, IConfiguration config)
     {
-        services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("PlayersDb"));
+        var inMemory = config.GetValue<bool>("UseInMemoryDatabase");
+        if (inMemory)
+        {
+            services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("PlayersDb"));
+        }
+        else
+        {
+            var connectionString = config.GetConnectionString("Default");
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+        }
     }
 
     public static void AddIdentity(this IServiceCollection services)
