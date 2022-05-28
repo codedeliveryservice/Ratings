@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Web.Data.Entities;
+using Web.Models;
 using Web.ViewModels;
 
 namespace Web;

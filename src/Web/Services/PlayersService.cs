@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Web.Data;
-using Web.Data.Entities;
 using Web.Exceptions;
 using Web.Interfaces;
+using Web.Models;
 using Web.Models.Enums;
 using Web.ViewModels;
 

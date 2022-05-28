@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Web.Data.Entities;
 using Web.Models;
 
 namespace Web.Data;
