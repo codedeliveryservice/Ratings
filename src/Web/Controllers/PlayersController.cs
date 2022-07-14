@@ -41,22 +41,14 @@ public class PlayersController : Controller
     }
 
     [HttpGet]
-    public ActionResult Create()
+    public async Task<ActionResult> Edit(int? id)
     {
-        return View();
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<ActionResult> Create(PlayerViewModel model)
-    {
-        if (!ModelState.IsValid)
+        if (!id.HasValue)
         {
-            return BadRequest();
+            return View(new PlayerViewModel());
         }
 
-        var id = await _playersService.CreatePlayer(model);
-        return RedirectToAction(nameof(Details), new { id });
+        return View(await _playersService.GetPlayer(id.Value));
     }
 
     [HttpPost]
@@ -68,14 +60,16 @@ public class PlayersController : Controller
             return BadRequest();
         }
 
-        await _playersService.UpdatePlayer(model);
-        return RedirectToAction(nameof(Details), new { model.Id });
-    }
+        if (model.Id == 0)
+        {
+            model.Id = await _playersService.CreatePlayer(model);
+        }
+        else
+        {
+            await _playersService.UpdatePlayer(model);
+        }
 
-    [HttpGet]
-    public async Task<ActionResult> Edit(int id)
-    {
-        return View(await _playersService.GetPlayer(id));
+        return RedirectToAction(nameof(Details), new { model.Id });
     }
 
     [HttpPost]
