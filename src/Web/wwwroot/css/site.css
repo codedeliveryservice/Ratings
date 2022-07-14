@@ -54,38 +54,16 @@ a {
     background-size: cover;
     background-position: center;
     height: 100%;
-}
-
-/* Details Page */
-.details .img {
     min-height: 300px;
 }
 
-.details .btn {
+.btn {
     width: 125px;
 }
 
-.details .navigation {
-    display: flex;
-}
-
-    .details .navigation * {
-        width: 120px;
-        margin-right: 10px;
-    }
-
-    .details .navigation > *:last-child {
-        margin-left: auto;
-        margin-right: 0;
-    }
-
-/* Edit Page */
-.edit .btn {
-    width: 125px;
-    margin-right: 6px;
-}
-
-/* Create Page */
-.create .btn {
-    width: 125px;
+.navigation {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 10px;
+    justify-items: end;
 }

@@ -3,7 +3,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<div class="edit row g-0 card flex-md-row">
+<div class="row g-0 card flex-md-row">
     <form class="col-lg-9 d-flex flex-column" asp-action="Edit" enctype="multipart/form-data">
         <div class="card-body">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        <div class="card-footer">
+        <div class="card-footer navigation">
             <input type="submit" value="Save" class="btn btn-primary btn-sm" />
             @if (Model.Id == 0)
             {
@@ -63,14 +63,12 @@
     </form>
 
     <div class="col-lg-3">
-        @if (Model.ImageUrl is null)
-        {
-            <div id="imageContainer" class="img bg-secondary rounded-end d-flex justify-content-center align-items-center text-white rounded-end">No Image</div>
-        }
-        else
-        {
-            <div id="imageContainer" class="img rounded-end" style="background-image: url('@Model.ImageUrl');"></div>
-        }
+        <div id="imageContainer" class="img bg-secondary rounded-end d-flex justify-content-center align-items-center text-white" style="background-image: url('@Model.ImageUrl')">
+            @if (Model.ImageUrl is null)
+            {
+                <p>No Image</p>
+            }
+        </div>
     </div>
 </div>
 
