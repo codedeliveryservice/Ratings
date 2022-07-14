@@ -57,13 +57,13 @@ a {
     min-height: 300px;
 }
 
-.btn {
-    width: 125px;
-}
-
 .navigation {
     display: grid;
     grid-template-columns: auto auto 1fr;
     gap: 10px;
     justify-items: end;
 }
+
+    .navigation .btn {
+        width: 125px;
+    }
