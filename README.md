@@ -23,7 +23,7 @@ The idea is to create a simple system for managing the rating list of players.
 
 ## Design
 
-Since this is purely a practice project, to simplify, the project uses a simple monolithic All-in-One architecture without much separation of concerns.
+Since this is purely a practice project, to simplify, the project uses a monolithic All-in-One architecture without much separation of concerns.
 
 Some separation is still achieved through the use of folders, and includes folders such as Controllers, Views and Models as responsibilities of MVC pattern.
 
