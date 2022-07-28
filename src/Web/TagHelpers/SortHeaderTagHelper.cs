@@ -18,6 +18,7 @@ public class SortHeaderTagHelper : TagHelper
 
     public SortState Property { get; set; }
     public SortState Current { get; set; }
+    public bool DefaultIsAscending { get; set; }
     public bool Ascending { get; set; }
 
     [ViewContext]
@@ -30,18 +31,10 @@ public class SortHeaderTagHelper : TagHelper
 
         bool ascending = Ascending;
 
-        // NOTE: Set the default sort for numeric properties to descending; otherwise ascending
+        // NOTE: Set a default sorting for the first request
         if (Current != Property)
         {
-            var propertyIsNumber = Property is SortState.Classical or SortState.Rapid or SortState.Blitz;
-            if (propertyIsNumber)
-            {
-                ascending = false;
-            }
-            else
-            {
-                ascending = true;
-            }
+            ascending = DefaultIsAscending;
         }
 
         var factory = _urlHelperFactory.GetUrlHelper(ViewContext);
@@ -57,16 +50,10 @@ public class SortHeaderTagHelper : TagHelper
             tag.AddCssClass("material-symbols-outlined");
 
             // NOTE: Alternatively, extract to a separate class in stylesheets
-            tag.Attributes.Add("style", "position: absolute; left: -23px; top: 0px;");
+            tag.Attributes.Add("style", "position: absolute; right: 100%; top: 0;");
 
-            if (ascending)
-            {
-                tag.InnerHtml.AppendHtml("expand_more");
-            }
-            else
-            {
-                tag.InnerHtml.AppendHtml("expand_less");
-            }
+            var iconInnerText = ascending ? "expand_more" : "expand_less";
+            tag.InnerHtml.AppendHtml(iconInnerText);
 
             output.PreContent.AppendHtml(tag);
         }
