@@ -13,14 +13,19 @@ public class ImageStorageService : IImageStorageService
 
     public async Task<string?> UploadImage(IFormFile? formFile)
     {
-        // TODO: Move to Configuration file
-        const string ImageFolder = "/images/";
-
-        bool isValid = formFile != null && formFile.ContentType.StartsWith("image/");
-        if (!isValid)
+        if (formFile is null)
         {
             return null;
         }
+
+        var isImageType = formFile.ContentType.StartsWith("image/");
+        if (!isImageType)
+        {
+            return null;
+        }
+
+        // TODO: Move to Configuration file
+        const string ImageFolder = "/images/";
 
         var directory = _environment.WebRootPath + ImageFolder;
         if (!Directory.Exists(directory))
@@ -28,12 +33,13 @@ public class ImageStorageService : IImageStorageService
             Directory.CreateDirectory(directory);
         }
 
-        var path = ImageFolder + Guid.NewGuid() + Path.GetExtension(formFile!.FileName);
-        using (var fileStream = new FileStream(_environment.WebRootPath + path, FileMode.Create))
-        {
-            await formFile.CopyToAsync(fileStream);
-        }
+        var fileName = Guid.NewGuid() + Path.GetExtension(formFile.FileName);
+        var fullPath = _environment.WebRootPath + ImageFolder + fileName;
 
-        return path;
+        using var fileStream = new FileStream(fullPath, FileMode.Create);
+        await formFile.CopyToAsync(fileStream);
+
+        // NOTE: Return the relative path
+        return ImageFolder + fileName;
     }
 }
