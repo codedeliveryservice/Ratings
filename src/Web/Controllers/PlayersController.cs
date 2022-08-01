@@ -41,14 +41,9 @@ public class PlayersController : Controller
     }
 
     [HttpGet]
-    public async Task<ActionResult> Edit(int? id)
+    public async Task<ActionResult> Edit(int id)
     {
-        if (!id.HasValue)
-        {
-            return View(new PlayerViewModel());
-        }
-
-        return View(await _playersService.GetPlayer(id.Value));
+        return View(await _playersService.GetPlayer(id));
     }
 
     [HttpPost]
@@ -60,16 +55,27 @@ public class PlayersController : Controller
             return BadRequest();
         }
 
-        if (model.Id == 0)
+        await _playersService.UpdatePlayer(model);
+        return RedirectToAction(nameof(Details), new { model.Id });
+    }
+
+    [HttpGet]
+    public ActionResult Create()
+    {
+        return View(new PlayerViewModel());
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<ActionResult> Create(PlayerViewModel model)
+    {
+        if (!ModelState.IsValid)
         {
-            model.Id = await _playersService.CreatePlayer(model);
-        }
-        else
-        {
-            await _playersService.UpdatePlayer(model);
+            return BadRequest();
         }
 
-        return RedirectToAction(nameof(Details), new { model.Id });
+        var id = await _playersService.CreatePlayer(model);
+        return RedirectToAction(nameof(Details), new { id });
     }
 
     [HttpPost]

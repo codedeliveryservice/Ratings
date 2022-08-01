@@ -1,0 +1,45 @@
+﻿@model PlayerViewModel
+
+<div class="card-body">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label asp-for="Name" class="control-label mb-1"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Country" class="control-label mb-1"></label>
+            <input asp-for="Country" class="form-control" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="FormFile" class="control-label mb-1"></label>
+            <input id="imageInput" asp-for="FormFile" type="file" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="Biography" class="control-label mb-1"></label>
+            <textarea asp-for="Biography" rows="3" class="form-control"></textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for="ClassicalRating" class="control-label mb-1"></label>
+            <input asp-for="ClassicalRating" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label asp-for="RapidRating" class="control-label mb-1"></label>
+            <input asp-for="RapidRating" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label asp-for="BlitzRating" class="control-label mb-1"></label>
+            <input asp-for="BlitzRating" class="form-control" />
+        </div>
+    </div>
+</div>

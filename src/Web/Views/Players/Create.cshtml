@@ -1,15 +1,15 @@
 ﻿@model PlayerViewModel
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
 <div class="row g-0 card flex-md-row">
-    <form class="col-lg-9 d-flex flex-column" asp-action="Edit" enctype="multipart/form-data">
+    <form class="col-lg-9 d-flex flex-column" asp-action="Create" enctype="multipart/form-data">
         <partial name="Shared/_PlayerEditForm" />
 
         <div class="card-footer navigation">
-            <input type="submit" value="Save" class="btn btn-primary btn-sm" />
-            <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary btn-sm">Cancel</a>
+            <input type="submit" value="Create" class="btn btn-primary btn-sm" />
+            <a asp-action="Index" class="btn btn-secondary btn-sm">Cancel</a>
         </div>
     </form>
 

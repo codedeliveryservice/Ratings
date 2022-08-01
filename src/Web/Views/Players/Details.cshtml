@@ -41,11 +41,6 @@
     </div>
 
     <div class="col-lg-3">
-        <div id="imageContainer" class="img bg-secondary rounded-end d-flex justify-content-center align-items-center text-white" style="background-image: url('@Model.ImageUrl')">
-            @if (Model.ImageUrl is null)
-            {
-                <p>No Image</p>
-            }
-        </div>
+        <partial name="Shared/_ImageContainer" />
     </div>
 </div>
